@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/sys.css">
+  
+</head>
+<body>
+  <header>
+    <div class="area"></div>
+      <nav class="main-menu">
+          <ul>
+            <!-- Logo Section -->
+            <li class="logo">
+              <a href="#">
+                <img src="/img/AfakLogo.png" alt="AFAK Plastic Logo" id="afakLogo">
+              </a>
+            </li>
+            
+            <!-- Rest of the Menu Items -->
+            <div class="bottom-buttons">
+              <li id="ToggleButton" class="toggle-btn">
+                <a href="#" id="toggleModeLink">
+                  <span class="nav-icon">
+                    <i class="fa fa-moon fa-2x" id="modeIcon"></i>
+                  </span>
+                  <span class="nav-text" id="modeText">Dark Mode</span>
+                </a>
+              </li>
+            </div>
+        </ul>
+    </nav>
+  </header>
+  
+  <!-- Main Container -->
+  <div class="container login-container">
+    <h1 class="page-title">AFAK PLASTIC</h1>
+    <h2 class="section-title">Login</h2>
+    <form id="loginForm" class="login-form">
+      <input type="text" id="username" class="login-input" placeholder="Username" required />
+      <input type="password" id="password" class="login-input" placeholder="Password" required />
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <p id="errorMessage" class="error-message" style="display: none;"></p>
+  </div>
+  <script src="/js/login.js"></script>
+  <script src="/js/dua.js"></script>
+</body>
+</html>

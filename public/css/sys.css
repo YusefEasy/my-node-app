@@ -1,0 +1,86 @@
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .container {
+  background: #1e1e1e;
+}
+
+body.dark-mode h1.page-title, body.dark-mode h2.section-title, body.dark-mode h3.section-title {
+  color: #00e6ff;
+}
+
+body.dark-mode input, body.dark-mode textarea, body.dark-mode select, body.dark-mode .input-field, body.dark-mode .search-input {
+  background: #333;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+body.dark-mode button, body.dark-mode .submit-btn, body.dark-mode .export-button, body.dark-mode .back-link, body.dark-mode th.table-header {
+  background: #00e6ff;
+  border: solid #000000 2px;
+  color: #000;
+}
+
+body.dark-mode button:hover, body.dark-mode .submit-btn:hover, body.dark-mode .export-button:hover, body.dark-mode .back-link:hover {
+  background: transparent;
+  color: #00e6ff;
+  border: 1px solid #00e6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 230, 255, 0.3);
+}
+
+body.dark-mode .edit-model,
+body.dark-mode .edit-company {
+  background: #00e6ff;
+  border: solid #000000 2px;
+  color: #000;
+}
+
+body.dark-mode .edit-model:hover,
+body.dark-mode .edit-company:hover {
+  background: transparent;
+  color: #e78f3c;
+  border: 1px solid #e78f3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 115, 0, 0.3);
+}
+
+body.dark-mode .delete-model,
+body.dark-mode .delete-company {
+  background: #00e6ff;
+  border: solid #000000 2px;
+  color: #000;
+}
+
+body.dark-mode .delete-model:hover,
+body.dark-mode .delete-company:hover {
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+}
+
+body.dark-mode td, body.dark-mode th {
+  color: #e0e0e0;
+}
+
+.page-title {
+  text-transform: uppercase;
+}
+
+/* Adjust table layout for smaller screens */
+@media (max-width: 768px) {
+  .page-title {
+    text-transform: lowercase;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    color: red;
+  }
+}

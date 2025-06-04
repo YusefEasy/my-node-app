@@ -1,0 +1,576 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300');
+
+/* Font Awesome Styles */
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+/* Main Menu Styling */
+.main-menu {
+  background: #212121;
+  border-right: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  width: 60px;
+  overflow: hidden;
+  transition: width 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
+  z-index: 1000; /* Lower z-index of the menu */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensure content starts from the top */
+}
+
+/* Expand the menu on hover */
+.main-menu.expanded {
+  width: 250px; /* Full width of the menu when expanded */
+}
+
+.main-menu > ul {
+  margin: 7px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-menu li.toggle-btn,
+.main-menu li.logout-btn {
+  margin-top: auto; /* This will push the buttons to the bottom */
+}
+
+.main-menu .bottom-buttons {
+  margin-top: auto; /* This will push the buttons to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+.main-menu li {
+  position: relative;
+  display: block;
+  width: 250px;
+}
+
+.main-menu li > a {
+  position: relative;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #999;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  pointer-events: none; /* Disable hover effect initially */
+}
+
+.main-menu .nav-icon {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.main-menu .nav-text {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  width: 190px;
+  font-family: 'Titillium Web', sans-serif;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  visibility: hidden; /* Initially hide nav-text */
+  opacity: 0;
+  z-index: 0; /* Initially behind other elements */
+}
+
+/* Initially disable interaction for menu items */
+.main-menu li > a {
+  pointer-events: none; /* Disable pointer events until the menu is fully expanded */
+}
+
+/* When the menu is expanded, show the nav-text and allow interactions */
+.main-menu.expanded .nav-text {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 9999; /* Bring nav-text to the front when expanded */
+}
+
+.main-menu.expanded li > a {
+  pointer-events: auto; /* Re-enable pointer events when the menu is expanded */
+}
+
+/* Apply the left-to-right hover effect for nav-text */
+.main-menu li:hover .nav-text,
+.main-menu li:hover > a {
+  color: #fff; /* Change text color to white */
+  background-color: #444 !important; /* Ensure a single background color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.main-menu .toggle-btn:hover,
+.main-menu .logout-btn:hover {
+  background-color: #444 !important; /* Same background color on hover */
+  color: #fff; /* Change text color to white on hover */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* When the menu is expanded, enable hover effect */
+.main-menu.expanded li > a {
+  pointer-events: auto; /* Re-enable pointer events when the menu is expanded */
+}
+
+/* Add animation for buttons */
+.main-menu .nav-text, .main-menu li > a {
+  transition: transform 0.5s ease;
+}
+
+/* Hover effect expand */
+.main-menu li:hover .nav-text {
+  background-color: #444; /* Apply the background color on hover */
+  transform: scaleX(1);
+  transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+/* Default Logo Size */
+.main-menu .logo img {
+  transition: 0.5s;
+  width: 60px;
+  height: auto;
+}
+
+/* Enlarge logo when hovering over the entire main menu */
+.main-menu:hover .logo img {
+  transition: 0.5s;
+  width: 250px;
+  height: auto;
+  margin-top: 0;
+}
+
+/* Adjust the logo container */
+.main-menu .logo {
+  text-align: center;
+  padding: 15px 0;
+}
+
+/* Scrollable Elements */
+.no-touch .scrollable.hover {
+  overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+  overflow-y: auto;
+  overflow: visible;
+}
+
+/* Links */
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+/* General Navigation Styling */
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+nav ul, nav li {
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Button Hover Effect (No Changes to Buttons) */
+.main-menu li:hover > a, nav.main-menu li.active > a,
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #fff;
+  background-color: #000000; /* Button hover stays as it is */
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+/* Page Background Area */
+.area {
+  float: left;
+  background: #e2e2e2;
+  width: 100%;
+  height: 100%;
+}
+
+/* Font-Family Definition */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url('https://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff') format('woff');
+}
+
+/* Body Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 6px;
+  border: 3px solid #fff;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #2980b9;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-track:hover {
+  background-color: #ddd;
+}
+
+/* Apply scroll to Search and Add Models container */
+#searchResultsExport {
+  max-height: 300px; /* Set a max height for the container */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  padding: 10px;
+  border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+  border-radius: 6px;  /* Optional: Rounded corners */
+}
+
+/* Optional: Style the search results */
+#searchResultsExport div {
+  padding: 8px;
+  background-color: #f1f1f1;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+/* Styling for hovering search results */
+#searchResultsExport div:hover {
+  background-color: #e2e2e2;
+}
+
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* Page Title */
+h1.page-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Section Titles */
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+h2.section-title, h3.section-title {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+h3.search-model {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Button Styling */
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+}
+
+/* Submit and Export Button Styling */
+button.submit-btn, .export-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  background: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+button.submit-btn:hover, .export-button:hover {
+  color: #3498db;
+  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+}
+
+
+/* General Button Styling */
+.actions {
+  display: flex; /* Use flexbox to align buttons side by side */
+  gap: 10px; /* Adds space between the buttons */
+}
+
+.actions button {
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none; /* Remove border */
+}
+
+/* Styling for Delete Buttons (Red) */
+.actions .delete-model,
+.actions .delete-company { /* Target both model and company delete buttons */
+  background-color: #e74c3c; /* Red background */
+  color: white; /* White text */
+}
+
+.actions .delete-model:hover,
+.actions .delete-company:hover { /* Hover effect for both buttons */
+  background-color: #c0392b; /* Darker red on hover */
+  transform: translateY(-2px); /* Button lift effect */
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3); /* Box shadow on hover */
+}
+
+/* Styling for Edit Buttons (Blue) */
+.actions .edit-model {
+  background-color: #3498db; /* Blue background */
+  color: white; /* White text */
+}
+.actions .edit-model:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: translateY(-2px); /* Button lift effect */
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3); /* Box shadow on hover */
+}
+
+/* Data Table Styling */
+
+table {
+  width: 100%;
+  table-layout: fixed; /* Ensures columns are evenly distributed */
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden; /* Prevents overflowing content */
+  text-overflow: ellipsis; /* Adds ellipsis for long content */
+}
+
+th.table-header {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: bold;
+}
+
+th.table-header, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th.table-header {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: bold;
+}
+
+td {
+  color: #333;
+}
+
+/* Scrollable Table Styles */
+.table-container {
+  max-height: 400px; /* Adjust this value based on your design */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+/* Table Styles for Fixed Layout */
+.table-container {
+  overflow-x: auto;  /* Allows horizontal scrolling for large tables */
+  margin-top: 20px;
+}
+
+/* Optional: Add a border for better visibility */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Adjust the width of the ID column */
+.table-container th:first-child,
+.table-container td:first-child {
+  width: 80px; /* Adjust this value to control the space taken by the ID column */
+  padding: 10px; /* Updated padding for consistency */
+  text-align: left;
+}
+
+/* Add vertical line between columns */
+.table-container th,
+.table-container td {
+  border-right: 1px solid #ddd; /* Vertical line between columns */
+  margin: 0; /* Reset any margin if applied */
+}
+
+/* Remove the right border for the last column */
+.table-container th:last-child,
+.table-container td:last-child {
+  border-right: none;
+}
+
+/* General Table Styles */
+.table-container th,
+.table-container td {
+  padding: 0 10px 0 10px; /* Adjusted padding: 0 top, 10px left/right, 0 bottom */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Move Action buttons slightly down */
+.table-container .actions button {
+  margin-top: 10px; /* Moves the buttons down slightly */
+  padding-top: 5px; /* Adjusts button padding if needed */
+}
+
+/* Adjust width of "How Many Models" in the Companies Table */
+.table-container #companiesTable th:nth-child(3),
+.table-container #companiesTable td:nth-child(3) {
+  width: 120px; /* Adjust width of the "How Many Models" column */
+  padding: 8px; /* Reduce padding for a smaller size */
+}
+
+/* Adjust width of "Price (DH)" and "Discount (%)" in the Models Table */
+.table-container #modelsTable th:nth-child(3),
+.table-container #modelsTable td:nth-child(3),
+.table-container #modelsTable th:nth-child(4),
+.table-container #modelsTable td:nth-child(4) {
+  width: 100px; /* Adjust width of Price and Discount columns */
+  padding: 8px; /* Reduce padding for a smaller size */
+}
+
+
+/* Input and Form Styling */
+input, select, .search-input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input:focus, select:focus, .search-input:focus {
+  border-color: #3498db;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
+}
+
+
+
+
+input.login-input {
+  width: 100%;
+}
+
+input.login-input:focus {
+  border-color: #3498db;
+}
+
+p.error-message {
+  color: red;
+}
+
+/*Scroll Bar Styles*/
+/* Customize the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the vertical scrollbar */
+  height: 12px; /* Set the height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3498db; /* Blue color for the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners for the thumb */
+  border: 3px solid #fff; /* White border around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2980b9; /* Darker blue when the thumb is hovered */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Light background color for the track */
+  border-radius: 6px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: #ddd; /* Slightly darker track on hover */
+}

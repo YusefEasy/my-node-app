@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Export to PDF</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/sys.css">
+</head>
+<body>
+  <header>
+    <div class="area"></div>
+      <nav class="main-menu">
+          <ul>
+
+            <!-- Logo Section -->
+            <li class="logo">
+              <a href="#">
+                <img src="/img/AfakLogo.png" alt="AFAK Plastic Logo" id="afakLogo">
+              </a>
+            </li>
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                      Home
+                    </span>
+                </a>
+            </li>
+
+            <li class="has-subnav">
+                <a href="/data">
+                    <i class="fa fa-tachometer-alt fa-2x"></i>
+                    <span class="nav-text">
+                      Dashboard
+                    </span>
+                </a>
+            </li>
+
+            <li class="has-subnav">
+                <a href="/export">
+                    <i class="fa fa-arrow-right fa-2x"></i>
+                    <span class="nav-text">
+                        Export
+                    </span>
+                </a>
+            </li>
+            <div class="bottom-buttons">
+              <li id="ToggleButton" class="toggle-btn">
+                <a href="#" id="toggleModeLink">
+                  <span class="nav-icon">
+                    <i class="fa fa-moon fa-2x" id="modeIcon"></i>
+                  </span>
+                  <span class="nav-text" id="modeText">Dark Mode</span>
+                </a>
+              </li>
+          
+              <li id="logoutButton" class="logout-btn">
+                <a href="#">
+                  <i class="fa fa-power-off fa-2x"></i>
+                  <span class="nav-text">Logout</span>
+                </a>
+              </li>
+            </div>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h1 class="page-title">Export to PDF</h1>
+
+    <div>
+      <h3 class="section-title">Vendor Name</h3>
+      <input type="text" id="vendorName" class="vendor-input" placeholder="Enter Vendor Name" required />
+    </div>
+
+    <!-- Company Selector input below Vendor Name -->
+    <div>
+      <h3 class="section-title">Select Company</h3>
+      <select id="companySelector" class="select-input">
+        <option value="">Select Company</option>
+      </select>
+    </div>
+
+    <div class="search-model">
+      <h3 class="section-title">Search and Add Models</h3>
+      <input type="text" id="searchModelExport" class="search-input" placeholder="Search Model" autocomplete="off" />
+      <div id="searchResultsExport" class="search-results"></div>
+
+      <div id="modelDetails" class="model-details" style="display: none;">
+        <h3 class="section-title">Model Details</h3>
+        <input type="number" id="quantity" class="model-input" placeholder="Quantity" min="1" />
+        <input type="number" id="packages" class="model-input" placeholder="Packages" min="1" />
+        <input type="number" id="pairs" class="model-input" placeholder="Pairs" min="1" />
+        <input type="number" id="modelDiscountInput" class="model-input" placeholder="Discount (%)" min="0" max="100" />
+        <button id="addModelDetails" class="submit-btn">Add Model</button>
+      </div>
+    </div>
+
+    
+
+    <div class="selected-models">
+      <h3 class="section-title">Selected Models</h3>
+      <div id="selectedModelsList" class="model-list"></div>
+    </div>
+
+    <form id="exportForm">
+      <button type="submit" class="export-button">Export to PDF</button>
+    </form>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+  
+  <script src="/js/export.js"></script>
+  <script src="/js/dua.js"></script>
+</body>
+</html>
