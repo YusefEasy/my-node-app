@@ -1,0 +1,455 @@
+/* Importing Google Fonts and Boxicons */
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap";
+
+@import "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css";
+
+/* Global style settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; /* Applying 'Poppins' font globally */
+}
+
+.sidebar {
+  position: fixed;
+  top: 40px; /* start below the top spacer */
+  left: 0;
+  height: calc(100% - 70px); /* full height minus the top spacer */
+  width: 78px; /* or your normal sidebar width */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px) brightness(1.15) contrast(1.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 14px;
+  z-index: 998;
+  transition: all 0.5s ease;
+  box-shadow: 2px 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.sidebar.open {
+  top: 40px; /* also below the top spacer */
+  width: 250px;
+  height: calc(100% - 70px);
+  transform: translateX(0);
+}
+
+#btn {
+  position: fixed !important;
+  top: 50%; /* vertically centered in viewport */
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 1100 !important; /* above .top-spacer */
+  font-size: 22px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: w-resize;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+
+.sidebar.open #btn {
+  position: absolute !important;
+  top: 15px;
+  right: 15px;
+  left: auto;
+  transform: none;
+  z-index: 9999 !important;
+  box-shadow: none;
+}
+
+body.sidebar-open #btn {
+  left: 190px;
+}
+
+
+
+/* Sidebar logo container */
+.sidebar .logo-details {
+  display: flex;
+  align-items: center; /* vertically center */
+  justify-content: center; /* horizontally center */
+  transition: height 0.4s ease, padding 0.4s ease;
+}
+
+/* Logo image small by default (sidebar closed) */
+.sidebar .logo-icon {
+  width: 160px; /* slightly smaller than 250px */
+  height: 160px;
+  object-fit: contain;
+  cursor: no-drop;
+  margin-top: 0; /* remove any vertical margin */
+  transition: width 0.4s ease, height 0.4s ease, margin-top 0.4s ease;
+
+}
+/* When sidebar is open, make logo bigger */
+.sidebar.open .logo-details {
+  height: 160px;  /* less than current 230px */
+  padding: 10px 12px; /* optional: some padding */
+}
+
+/* When sidebar is open, make logo bigger and reset margin */
+.sidebar.open .logo-icon {
+  width: 200px;    /* smaller than current 250px */
+  height: 200px;
+  margin: 0;       /* remove margin to avoid extra space */
+}
+.sidebar:not(.open) .logo_name {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+/* Center logo icon when sidebar is closed */
+.sidebar:not(.open) .logo-details {
+  height: 80px;  /* Keep compact height */
+}
+.sidebar:not(.open) .logo-icon {
+  width: 90px;
+  height: 90px;
+  margin-top: 10px; /* small upward nudge */
+}
+
+.sidebar .logo-details .icon {
+  opacity: 0; /* Hidden by default, shows when sidebar is expanded */
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0; /* Hidden by default, shows when sidebar is expanded */
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+/* General icon styling */
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px; /* Centers icon vertically */
+}
+
+/* Sidebar navigation list styling */
+.sidebar .nav-list {
+  height: calc(100% - 140px); /* Leaves space for logo and profile */
+}
+
+/* Scrollbar styles for sidebar */
+.sidebar .scroll {
+  overflow-y: auto; /* Enables vertical scrolling */
+  scrollbar-width: thin;
+}
+.sidebar .scroll::-webkit-scrollbar {
+  width: 8px;
+  background: #262440; /* Scrollbar background color */
+  border-radius: 5px;
+}
+.sidebar .scroll::-webkit-scrollbar-thumb {
+  background: #262440; /* Scrollbar thumb color */
+  border-radius: 5px;
+}
+.sidebar .scroll::-webkit-scrollbar-track {
+  background: #171526; /* Scrollbar track color */
+  border-radius: 5px;
+}
+
+/* Sidebar navigation item styling */
+.sidebar li {
+  position: relative;
+  margin: 8px 8px 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip {
+  opacity: 1; /* Shows tooltip on hover */
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Link styling within sidebar items */
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+.sidebar li a:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Hover when sidebar is closed: expand width */
+.sidebar:not(.open) li a:hover {
+  width: 47px;
+  background: rgba(255, 255, 255, 0.07);
+  position: relative;
+  z-index: 10;
+}
+
+/* Link text and icon hover effects */
+.sidebar li a:hover .links_name {
+  transition: all 0.5s ease;
+}
+.sidebar li a:hover i {
+  transition: all 0.5s ease;
+}
+
+/* Link text styling */
+.sidebar li a .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+/* Icon styling within sidebar items */
+.sidebar li i {
+  height: 50px;
+  line-height: 50px; /* Centers icon vertically */
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+/* Profile details styling */
+.sidebar li .profile-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+/* Sidebar input (search) styling */
+.sidebar input {
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 50px; /* Default width for search input */
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31; /* Input background color */
+}
+
+/* Profile footer section at the bottom of sidebar */
+.sidebar li.profile-footer {
+  position: absolute;
+  bottom: -7px;  /* pulled down 3px to remove space */
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px) brightness(1.2) contrast(1.1);
+  -webkit-backdrop-filter: blur(8px) brightness(1.2) contrast(1.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.05);
+}
+
+
+.profile-footer .about-me {
+  color: #fff;
+  font-size: 14px;
+}
+
+.profile-footer .about-me .name {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.profile-footer .about-me .job {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.profile-footer .footer-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.sidebar.open .profile-footer .footer-controls {
+  justify-content: flex-start;
+}
+
+.footer-controls a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-controls i {
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+
+/* Logout button styling */
+.sidebar .profile #log_out {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #1d1b31;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+
+/* Expanded sidebar styles */
+.sidebar.open {
+  width: 250px; /* Expanded sidebar width */
+  transform: translateX(0);
+}
+.sidebar.open .logo-details .icon {
+  opacity: 1; /* Shows icon in expanded state */
+}
+.sidebar.open .logo-details .logo_name {
+  opacity: 1; /* Shows logo name in expanded state */
+}
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+.sidebar.open li .tooltip {
+  display: none; /* Hides tooltips when expanded */
+}
+.sidebar.open li a .links_name {
+  opacity: 1; /* Shows link names when expanded */
+  pointer-events: auto;
+}
+.sidebar.open input {
+  padding: 0 20px 0 50px;
+  width: 100%; /* Expands input width */
+}
+
+.sidebar.open li.profile {
+  width: 250px; /* Expands profile section */
+}
+.sidebar.open .profile #log_out {
+  width: 50px; /* Shrinks logout button */
+  background: none;
+}
+
+
+
+
+/* Logout link styled like sidebar links */
+.logout-link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+/* Icon inherits sidebar icon style */
+.logout-link i {
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Hover effect for logout link */
+.logout-link:hover {
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+}
+
+.logout-link:hover i {
+  color: #fff;
+}
+
+/* Logout text styling */
+.logout-link .logout-text {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s cubic-bezier(.6,.2,.4,1), opacity 0.3s cubic-bezier(.6,.2,.4,1), transform 0.3s cubic-bezier(.6,.2,.4,1);
+}
+
+/* Hide logout text when sidebar is collapsed */
+.sidebar:not(.open) .logout-link .logout-text {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-10px) scale(0.9);
+}
+
+/* Show logout text when sidebar is open */
+.sidebar.open .logout-link .logout-text {
+  opacity: 1;
+  width: auto;
+  margin-left: 8px;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+/* Main content (home section) styling - Removed intentionally as per instruction */

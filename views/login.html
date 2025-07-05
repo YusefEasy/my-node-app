@@ -6,49 +6,87 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <title>Login</title>
+
   <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/sys.css">
-  
+  <link rel="stylesheet" href="/css/notification.css">
+  <link rel="stylesheet" href="/css/responsivity.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/table-styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="area"></div>
-      <nav class="main-menu">
-          <ul>
-            <!-- Logo Section -->
-            <li class="logo">
-              <a href="#">
-                <img src="/img/AfakLogo.png" alt="AFAK Plastic Logo" id="afakLogo">
-              </a>
-            </li>
-            
-            <!-- Rest of the Menu Items -->
-            <div class="bottom-buttons">
-              <li id="ToggleButton" class="toggle-btn">
-                <a href="#" id="toggleModeLink">
-                  <span class="nav-icon">
-                    <i class="fa fa-moon fa-2x" id="modeIcon"></i>
-                  </span>
-                  <span class="nav-text" id="modeText">Dark Mode</span>
-                </a>
-              </li>
-            </div>
-        </ul>
-    </nav>
-  </header>
-  
-  <!-- Main Container -->
-  <div class="container login-container">
-    <h1 class="page-title">AFAK PLASTIC</h1>
-    <h2 class="section-title">Login</h2>
-    <form id="loginForm" class="login-form">
-      <input type="text" id="username" class="login-input" placeholder="Username" required />
-      <input type="password" id="password" class="login-input" placeholder="Password" required />
-      <button type="submit" class="login-btn">Login</button>
-    </form>
-    <p id="errorMessage" class="error-message" style="display: none;"></p>
+
+  <div class="top-spacer">
+  <i class='bx bx-menu' id="btn"></i>
   </div>
+  <!-- Sidebar for navigation -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/img/AfakLogo.png" alt="AFak Logo" class="logo-icon" />
+    </div>
+
+    <ul class="nav-list">
+      <!-- Footer Profile Section -->
+      <li class="profile-footer">
+        <div class="about-me">
+          <div class="name">Hi, I’m EASY</div>
+          <div class="job">Creative Dev</div>
+        </div>
+        <div class="footer-controls">
+          <a href="#" id="log_out" class="logout-link">
+            <i class='bx bx-log-out'></i>
+            <span class="logout-text">Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="ui">
+    <p class="zoom">
+      <span class="zoom zoomin">+</span>
+      <span class="zoom zoomout">-</span>
+    </p>
+    <p class="zoomlevel">
+      <span class="percent">100</span> % - (<span class="width"></span>px)(<span class="height"></span>px)
+    </p>
+    <p>Dead: <span class="dead">0</span></p>
+    <p>Alive: <span class="alive">0</span></p>
+    <p>Drawn: <span class="drawn">0</span></p>
+    <p><span class="fps">0</span> FPS</p>
+    <a class="save" href="" download="capture.png">Save</a>
+  </div>
+
+  <div id="notification-container" class="notification-container"></div>
+  <div id="modal-container" class="modal-container"></div>
+
+  <div class="main-content">
+    <div class="client-manager-section login-container">
+      <h1 class="client-manager-title">AFAK PLASTIC</h1>
+      <div class="client-create-card">
+        <h2 class="client-card-title">Login</h2>
+        <form id="loginForm" class="client-form-wrapper-vertical">
+          <input type="text" id="username" class="client-input" placeholder="Username" required />
+          <input type="password" id="password" class="client-input" placeholder="Password" required />
+          <button type="submit" class="client-button">Login</button>
+        </form>
+        <p id="errorMessage" class="error-message" style="display: none;"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="globalLoadingSpinner" style="display: none; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script src="/js/spipa-background.js"></script>
+  <script src="/js/notification.js"></script>
   <script src="/js/login.js"></script>
-  <script src="/js/dua.js"></script>
+  <script src="/js/ui-behavior.js"></script>
+
 </body>
 </html>

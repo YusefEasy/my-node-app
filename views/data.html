@@ -6,113 +6,146 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <title>Data Overview</title>
+
   <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/sys.css">
+  <link rel="stylesheet" href="/css/notification.css">
+  <link rel="stylesheet" href="/css/responsivity.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/table-styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="area"></div>
-      <nav class="main-menu">
-          <ul>
 
-            <!-- Logo Section -->
-            <li class="logo">
-              <a href="#">
-                <img src="/img/AfakLogo.png" alt="AFAK Plastic Logo" id="afakLogo">
-              </a>
-            </li>
-            
-            <li>
-                <a href="/">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                      Home
-                    </span>
-                </a>
-            </li>
-
-            <li class="has-subnav">
-                <a href="/data">
-                    <i class="fa fa-tachometer-alt fa-2x"></i>
-                    <span class="nav-text">
-                      Dashboard
-                    </span>
-                </a>
-            </li>
-
-            <li class="has-subnav">
-                <a href="/export">
-                    <i class="fa fa-arrow-right fa-2x"></i>
-                    <span class="nav-text">
-                        Export
-                    </span>
-                </a>
-            </li>
-            <div class="bottom-buttons">
-              <li id="ToggleButton" class="toggle-btn">
-                <a href="#" id="toggleModeLink">
-                  <span class="nav-icon">
-                    <i class="fa fa-moon fa-2x" id="modeIcon"></i>
-                  </span>
-                  <span class="nav-text" id="modeText">Dark Mode</span>
-                </a>
-              </li>
-          
-              <li id="logoutButton" class="logout-btn">
-                <a href="#">
-                  <i class="fa fa-power-off fa-2x"></i>
-                  <span class="nav-text">Logout</span>
-                </a>
-              </li>
-            </div>
-        </ul>
-    </nav>
-  </header>
-
-  <!-- Main Container -->
-  <div class="container">
-    <h1 class="page-title" id="pageTitle">Data Overview</h1>
-
-    <!-- Table of Data -->
-    <h2 class="section-title">Companies and Model Count</h2>
-    <div class="table-container">
-      <table id="companiesTable">
-        <thead>
-          <tr>
-            <th class="table-header">ID</th>
-            <th class="table-header">Name</th>
-            <th class="table-header">H.M.M</th>
-            <th class="table-header">Created At</th>
-            <th class="table-header">Action</th>
-          </tr>
-        </thead>
-        <tbody id="companiesTableBody"></tbody>
-      </table>
+  <div class="top-spacer">
+  <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <!-- Sidebar for navigation -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/img/AfakLogo.png" alt="AFak Logo" class="logo-icon" />
     </div>
 
-    
-    <h2 class="section-title">Models</h2>
-    <select id="companyFilter" class="select-input" required>
-      <option value="">Select Company</option>
-    </select>
-    <div class="table-container">
-      <table id="modelsTable">
-        <thead>
-          <tr>
-            <th class="table-header">ID</th>
-            <th class="table-header">Name</th>
-            <th class="table-header">Price (DH)</th>
-            <th class="table-header">Discount (%)</th>
-            <th class="table-header">Created At</th>
-            <th class="table-header">Action</th>
-          </tr>
-        </thead>
-        <tbody id="modelsTableBody"></tbody>
-      </table>
+    <ul class="nav-list">
+      <li>
+        <a href="/">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="/clients">
+          <i class='bx bx-user'></i>
+          <span class="links_name">Profiles</span>
+        </a>
+        <span class="tooltip">Profiles</span>
+      </li>
+      <li>
+        <a href="/data">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Data</span>
+      </li>
+      <li>
+        <a href="/export">
+          <i class='bx bx-folder'></i>
+          <span class="links_name">Export</span>
+        </a>
+        <span class="tooltip">Export</span>
+      </li>
+
+      <!-- Footer Profile Section -->
+      <li class="profile-footer">
+        <div class="about-me">
+          <div class="name">Hi, I’m EASY</div>
+          <div class="job">Creative Dev</div>
+        </div>
+        <div class="footer-controls">
+          <a href="#" id="log_out" class="logout-link">
+            <i class='bx bx-log-out'></i>
+            <span class="logout-text">Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="ui">
+    <p class="zoom">
+      <span class="zoom zoomin">+</span>
+      <span class="zoom zoomout">-</span>
+    </p>
+    <p class="zoomlevel">
+      <span class="percent">100</span> % - (<span class="width"></span>px)(<span class="height"></span>px)
+    </p>
+    <p>Dead: <span class="dead">0</span></p>
+    <p>Alive: <span class="alive">0</span></p>
+    <p>Drawn: <span class="drawn">0</span></p>
+    <p><span class="fps">0</span> FPS</p>
+    <a class="save" href="" download="capture.png">Save</a>
+  </div>
+
+  <div id="notification-container" class="notification-container"></div>
+  <div id="modal-container" class="modal-container"></div>
+
+  <div class="main-content">
+    <div class="client-manager-section">
+      <h1 class="client-manager-title">Dashboard</h1>
+      <div class="client-list-card">
+        <h3 class="client-card-title">Companies and Model Count</h3>
+        <div class="table-container">
+          <table id="companiesTable">
+            <thead>
+              <tr>
+                <th class="table-header">ID</th>
+                <th class="table-header">Name</th>
+                <th class="table-header">H.M.M</th>
+                <th class="table-header">Created At</th>
+                <th class="table-header">Action</th>
+              </tr>
+            </thead>
+            <tbody id="companiesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="client-list-card">
+        <h3 class="client-card-title">Models</h3>
+        <select id="companyFilter" class="select-input" required>
+          <option value="">Select Company</option>
+        </select>
+        <div class="table-container">
+          <table class="models-table" id="modelsTable">
+            <thead>
+              <tr>
+                <th class="table-header">ID</th>
+                <th class="table-header">Name</th>
+                <th class="table-header">Price<br>(DH)</th>
+                <th class="table-header">Discount<br>(%)</th>
+                <th class="table-header">Quantity</th>
+                <th class="table-header">Packages</th>
+                <th class="table-header">Created At</th>
+                <th class="table-header">Action</th>
+              </tr>
+            </thead>
+            <tbody id="modelsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  
-  <script src="/js/dua.js"></script>
+
+  <div id="globalLoadingSpinner" style="display: none; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script src="/js/spipa-background.js"></script>
+  <script src="/js/notification.js"></script>
+  <script src="/js/ui-behavior.js"></script>
   <script src="/js/data.js"></script>
 
 </body>

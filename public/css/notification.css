@@ -1,0 +1,264 @@
+/* =====================
+   Notification System CSS
+===================== */
+
+/* =====================
+   Notification Container
+===================== */
+.notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Centered override for modals */
+.notification-container.centered {
+  top: 50%;
+  left: 50%;
+  bottom: unset;
+  right: unset;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  pointer-events: auto;
+}
+
+.notification {
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 230, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.95;
+  pointer-events: auto;
+  animation: fade-in-up 0.4s ease forwards;
+  transition: all 0.3s ease-in-out;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.notification.success { background-color: #27ae60; }
+.notification.error   { background-color: #c0392b; }
+.notification.warning { background-color: #e67e22; }
+.notification.info    { background-color: #2980b9; }
+
+.notification.fade-out {
+  opacity: 0;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 0.95; transform: translateY(0); }
+}
+
+/* =====================
+   Confirmation Modal
+===================== */
+.centered-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: #181c23; /* dark background */
+  color: #fff;               /* light text */
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Poppins', sans-serif;
+  max-width: 400px;
+  text-align: center;
+}
+
+.confirm-btn,
+.cancel-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.confirm-btn {
+  background: #00e6ff;
+  border: solid #00e6ff 1px;
+  color: #181c1f;
+  transition: all 0.3s ease;
+}
+.confirm-btn:hover {
+  background: transparent;
+  color: #90ee90;
+  border: 1px solid #66cc66;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 204, 102, 0.3);
+}
+
+.cancel-btn {
+  background: #00e6ff;
+  border: solid #00e6ff 1px;
+  color: #181c1f;
+  transition: all 0.3s ease;
+}
+.cancel-btn:hover {
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 115, 0, 0.3);
+}
+
+/* =====================
+   Input Prompt Modal
+===================== */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container.active {
+  display: flex !important;
+}
+
+.custom-modal .modal-box {
+  background: rgba(24, 28, 35, 0.85); /* darker, more opaque glass */
+  backdrop-filter: blur(12px) brightness(1.08) contrast(1.08); /* stronger, crisper blur */
+  border: 1px solid rgba(0, 234, 255, 0.25); /* subtle blue border */
+  box-shadow: 0 4px 24px rgba(0, 230, 255, 0.15);
+  color: #fff;
+  padding: 20px 25px;
+  border-radius: 14px;
+  text-align: center;
+  min-width: 320px;
+  max-width: 90vw;
+  transition: all 0.12s cubic-bezier(.6,.2,.4,1); /* faster, smoother */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.custom-modal label {
+  font-weight: bold;
+  color: #e0e0e0; /* lighter label */
+}
+
+.custom-modal input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #181c23; /* dark input */
+  color: #fff;
+}
+
+.animated-confirm {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.animated-confirm.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.animated-confirm.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+
+/* =====================
+   Selected Model Layout Fix
+===================== */
+.model-content {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.model-name {
+  color: #00eaff; /* accent blue */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.model-detail {
+  color: #b0b0b0; /* lighter gray */
+  font-weight: 500;
+}
+
+.model-discount {
+  color: #ff7675; /* lighter red */
+  font-weight: 600;
+}
+
+
+/* === Global Loading Spinner === */
+#globalLoadingSpinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #00e6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

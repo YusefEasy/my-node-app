@@ -1,0 +1,465 @@
+/* =========================
+   GENERAL TABLE STYLES
+   ========================= */
+
+
+/* Scrollable Table Styles */
+.table-container {
+  max-height: 400px;      /* Adjust this value based on your design */
+  overflow-y: auto;       /* Enable vertical scrolling */
+  overflow-x: auto;       /* Enable horizontal scrolling */
+  margin-top: 20px;
+}
+
+/* Zebra striping for all tables */
+tbody tr:nth-child(even) td {
+  background-color: #22272b;
+}
+tbody tr:nth-child(odd) td {
+  background-color: #000;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 2px 8px;
+  border: none;
+  text-align: center;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  word-break: break-word;
+  max-width: 180px;
+}
+
+/* Compact table header */
+th {
+  padding: 6px 8px;
+  background-color: #00e6ff;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none !important;
+  /* border-radius removed */
+}
+
+/* Table header base class */
+.table-header {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: transparent;
+  border: none !important;
+  color: inherit;
+  padding: inherit;
+}
+
+/* Table body cell styles */
+td {
+  color: #e0e0e0;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: background 0.2s;
+}
+
+/* Hover only on table body cells, not headers */
+tbody td:hover {
+  background-color: #23272b;
+}
+
+/* Remove border for first/last cells for a cleaner look */
+tr:last-child td {
+  border-bottom: none;
+}
+th:first-child,
+td:first-child {
+  border-left: none;
+}
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+
+/* =========================
+   COLOR FOR EVERY CHILD
+   ========================= */
+/* Header colors for models table */
+#modelsTable th:nth-child(1) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(2) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(3) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(4) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(5) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(6) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(7) { background-color: #00e6ff; color: #222; }
+#modelsTable th:nth-child(8) { background-color: #00e6ff; color: #222; }
+
+/* Body cell colors for models table */
+#modelsTable td:nth-child(1) { color: #00e6ff; font-weight: bold; }
+#modelsTable td:nth-child(2) { color: #00bcd4; }
+#modelsTable td:nth-child(3) { color: #009688; }
+#modelsTable td:nth-child(4) { color: #4caf50; }
+#modelsTable td:nth-child(5) { color: #ff9800; }
+#modelsTable td:nth-child(6) { color: #e91e63; }
+#modelsTable td:nth-child(7) { color: #9c27b0; }
+#modelsTable td:nth-child(8) { color: #607d8b; }
+
+/* =========================
+   ACTION BUTTONS (ALL TABLES)
+   ========================= */
+.actions {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions .edit-company,
+.actions .delete-company,
+.actions .edit-model,
+.actions .delete-model {
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Companies Table: Small action header and buttons */
+#companiesTable th:last-child,
+#companiesTable td:last-child {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  min-width: 70px;
+  max-width: 90px;
+}
+#companiesTable .actions .edit-company,
+#companiesTable .actions .delete-company {
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+/* Models Table: Big action header and buttons */
+#modelsTable th:last-child,
+#modelsTable td:last-child {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  min-width: 110px;
+  max-width: 160px;
+}
+#modelsTable .actions .edit-model,
+#modelsTable .actions .delete-model {
+  padding: 4px 9px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* Action button colors */
+.actions .edit-company,
+.actions .edit-model {
+  background: #00e6ff;
+  border: solid #00e6ff 1px;
+  color: #181c1f;
+}
+.actions .edit-company:hover,
+.actions .edit-model:hover {
+  background: transparent;
+  color: #e78f3c;
+  border: 1px solid #e78f3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 115, 0, 0.3);
+}
+.actions .delete-company,
+.actions .delete-model {
+  background: #00e6ff;
+  border: solid #00e6ff 1px;
+  color: #181c1f;
+}
+.actions .delete-company:hover,
+.actions .delete-model:hover {
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+}
+
+.model-actions button {
+  border: 1px solid #00e6ff;
+  color: #181c1f;
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.model-actions .edit-model:hover {
+  background: transparent;
+  color: #e78f3c;
+  border: 1px solid #e78f3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+}
+
+.model-actions .delete-model:hover {
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+}
+
+/* =========================
+   COLUMN SIZING
+   ========================= */
+/* Make Price (DH), Discount (%), Quantity, Packages columns the same width */
+#modelsTable th:nth-child(3), /* Price (DH) */
+#modelsTable td:nth-child(3),
+#modelsTable th:nth-child(4), /* Discount (%) */
+#modelsTable td:nth-child(4),
+#modelsTable th:nth-child(5), /* Quantity */
+#modelsTable td:nth-child(5),
+#modelsTable th:nth-child(6), /* Packages */
+#modelsTable td:nth-child(6) {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  min-width: 90px;
+  max-width: 120px;
+}
+
+/* =========================
+   MULTI-LINE HEADER SPACING
+   ========================= */
+/* Add more space below multi-line headers for Price, Discount, Quantity, Packages */
+#modelsTable th:nth-child(3) br,
+#modelsTable th:nth-child(4) br,
+#modelsTable th:nth-child(5) br,
+#modelsTable th:nth-child(6) br {
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Remove extra margin from Action header */
+#modelsTable th:nth-child(8) br {
+  margin-bottom: 0;
+}
+
+/* =========================
+   EXPORT TABLE STYLES
+   ========================= */
+.export-table {
+  width: 100%;
+  min-width: 600px;
+  max-width: 100%;
+  border-spacing: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: transparent;
+}
+
+.export-history-card {
+  width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+  padding-bottom: 12px;
+}
+
+.export-table th, .export-table td {
+  padding: 10px 14px;
+  border: none;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.export-table th {
+  background-color: #00e6ff;
+  color: #181c1f;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  border: none !important;
+}
+
+.export-table td {
+  background-color: transparent !important;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Export table child column colors */
+.export-table td:nth-child(1) { color: #00e6ff !important; font-weight: bold; }
+.export-table td:nth-child(2) { color: #00bcd4 !important; }
+.export-table td:nth-child(3) { color: #009688 !important; }
+.export-table td:nth-child(4) { color: #4caf50 !important; }
+.export-table td:nth-child(5) { color: #ff9800 !important; }
+.export-table td:nth-child(6) { color: #e91e63 !important; }
+.export-table td:nth-child(7) { color: #607d8b !important; }
+
+.export-table tr:last-child td {
+  border-bottom: none;
+}
+
+.export-table tbody tr:hover td {
+  background-color: #23272b;
+}
+
+.export-table th:first-child,
+.export-table th:last-child,
+.export-table td:first-child,
+.export-table td:last-child {
+  border-radius: 0 !important;
+  border-left: none;
+  border-right: none;
+}
+
+/* PDF link styling */
+.export-table a {
+  color: #00e6ff;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.export-table a:hover {
+  color: #4caf50;
+}
+
+/* =========================
+   SELECTED MODELS TABLE
+   ========================= */
+.selected-models-table th {
+  background-color: #00e6ff;
+  color: #000;
+  font-weight: bold;
+}
+.selected-models-table td {
+  background-color: #000;
+  color: white;
+  transition: all 0.3s ease;
+}
+.selected-models-table .model-name {
+  color: #00e6ff;
+  font-weight: bold;
+}
+.selected-models-table .model-discount {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.selected-models-table .model-price {
+  color: #27ae60;
+  font-weight: bold;
+}
+.selected-models-table .model-detail {
+  color: #444;
+  font-weight: 500;
+}
+
+/* =========================
+   MODELS TABLE (EXAMPLE)
+   ========================= */
+#modelsTable {
+  width: 100%;
+  min-width: 0;
+  table-layout: auto;
+  /* border-radius removed */
+}
+
+#modelsTable th {
+  white-space: normal;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.2;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+#modelsTable th br {
+  margin-bottom: 10px;
+  display: block;
+}
+#modelsTable th small,
+#modelsTable th .unit {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #e0e0e0;
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+
+#modelsTable thead tr th:first-child,
+#modelsTable thead tr th:last-child {
+  border-radius: 0 !important;
+}
+
+#modelsTable td {
+  padding: 2px 8px;
+  border: none;
+  font-size: 13px;
+  color: #e0e0e0;
+  text-align: center;
+  transition: background 0.2s;
+  background-color: inherit;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+#modelsTable td .created-date {
+  display: block;
+}
+#modelsTable td .created-time {
+  display: block;
+  font-size: 12px;
+  color: #b0b0b0;
+}
+
+#modelsTable td:hover {
+  background-color: #23272b;
+}
+
+/* =========================
+   COMPANIES TABLE (EXAMPLE)
+   ========================= */
+#companiesTable th {
+  padding: 8px 8px;
+  background-color: #00e6ff;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: none !important;
+  border-radius: 0 !important;
+}
+#companiesTable td {
+  padding: 2px 8px;
+  background-color: transparent;
+  color: #e0e0e0;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+  transition: background 0.2s;
+  vertical-align: middle;
+  border: none;
+}
+#companiesTable td:hover {
+  background-color: #23272b;
+}

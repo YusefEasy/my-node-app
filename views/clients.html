@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clients</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/notification.css" />
+  <link rel="stylesheet" href="/css/responsivity.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/table-styles.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body>
+
+  <div id="notification-container" class="notification-container"></div>
+  <div id="modal-container" class="modal-container"></div>
+  
+  <div class="ui">
+    <p class="zoom">
+      <span class="zoom zoomin">+</span>
+      <span class="zoom zoomout">-</span>
+    </p>
+    <p class="zoomlevel">
+      <span class="percent">100</span> % - (<span class="width"></span>px)(<span class="height"></span>px)
+    </p>
+    <p>Dead: <span class="dead">0</span></p>
+    <p>Alive: <span class="alive">0</span></p>
+    <p>Drawn: <span class="drawn">0</span></p>
+    <p><span class="fps">0</span> FPS</p>
+    <a class="save" href="" download="capture.png">Save</a>
+  </div>
+
+  <div class="top-spacer">
+  <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <!-- Sidebar for navigation -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/img/AfakLogo.png" alt="AFak Logo" class="logo-icon" />
+    </div>
+
+    <ul class="nav-list">
+      <li>
+        <a href="/">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="/clients">
+          <i class='bx bx-user'></i>
+          <span class="links_name">Profiles</span>
+        </a>
+        <span class="tooltip">Profiles</span>
+      </li>
+      <li>
+        <a href="/data">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Data</span>
+      </li>
+      <li>
+        <a href="/export">
+          <i class='bx bx-folder'></i>
+          <span class="links_name">Export</span>
+        </a>
+        <span class="tooltip">Export</span>
+      </li>
+
+      <!-- Footer Profile Section -->
+      <li class="profile-footer">
+        <div class="about-me">
+          <div class="name">Hi, I’m EASY</div>
+          <div class="job">Creative Dev</div>
+        </div>
+        <div class="footer-controls">
+          <a href="#" id="log_out" class="logout-link">
+            <i class='bx bx-log-out'></i>
+            <span class="logout-text">Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="main-content">
+    <!-- Client Manager Page -->
+    <section class="client-manager-section">
+      <h1 class="client-manager-title">Client Manager</h1>
+
+      <!-- Add New Client -->
+      <div class="client-create-card">
+        <h2 class="client-card-title">Add New Client</h2>
+        <form id="createClientForm" class="client-form-wrapper">
+          <input type="text" id="clientNameInput" class="client-input" placeholder="Enter client name" required />
+          <button type="submit" class="client-button">Create</button>
+        </form>
+      </div>
+
+      <!-- Client List -->
+      <div class="client-list-card">
+        <h2 class="client-card-title">Clients</h2>
+        <div id="clientEntries" class="client-list-container">
+          <!-- Client entries will appear here -->
+        </div>
+      </div>
+
+      <!-- Export History -->
+      <div class="export-history-card">
+        <h2 class="client-card-title" id="historyTitle">Export History</h2>
+        <table class="export-table">
+          <thead>
+            <tr>
+              <th>Invoice ID</th>
+              <th>Models</th>
+              <th>Total T.T.C</th>
+              <th>Total Remise</th>
+              <th>Net à Payer</th>
+              <th>Total Colis</th>
+              <th>PDF</th>
+            </tr>
+          </thead>
+          <tbody id="exportTableBody">
+            <!-- Export rows inserted by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div id="globalLoadingSpinner" style="display: none; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+
+  <script src="/js/spipa-background.js"></script>
+  <script src="/js/notification.js"></script>
+  <script src="/js/ui-behavior.js"></script>
+  <script src="/js/clients.js"></script>
+  
+</body>
+</html>

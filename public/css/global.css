@@ -3,6 +3,11 @@
 @import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:300');
 
+::selection {
+  background-color: #00e6ff; /* Change this to your preferred color */
+  color: black; /* Change the text color if needed */
+}
+
 /* Font Awesome Styles */
 .fa-2x {
   font-size: 2em;
@@ -18,159 +23,6 @@
   font-size: 20px;
 }
 
-/* Main Menu Styling */
-.main-menu {
-  background: #212121;
-  border-right: 1px solid #e5e5e5;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  width: 60px;
-  overflow: hidden;
-  transition: width 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
-  z-index: 1000; /* Lower z-index of the menu */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Ensure content starts from the top */
-}
-
-/* Expand the menu on hover */
-.main-menu.expanded {
-  width: 250px; /* Full width of the menu when expanded */
-}
-
-.main-menu > ul {
-  margin: 7px 0;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-menu li.toggle-btn,
-.main-menu li.logout-btn {
-  margin-top: auto; /* This will push the buttons to the bottom */
-}
-
-.main-menu .bottom-buttons {
-  margin-top: auto; /* This will push the buttons to the bottom */
-  display: flex;
-  flex-direction: column;
-}
-
-.main-menu li {
-  position: relative;
-  display: block;
-  width: 250px;
-}
-
-.main-menu li > a {
-  position: relative;
-  display: table;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: #999;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  pointer-events: none; /* Disable hover effect initially */
-}
-
-.main-menu .nav-icon {
-  position: relative;
-  display: table-cell;
-  width: 60px;
-  height: 36px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 18px;
-}
-
-.main-menu .nav-text {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
-  width: 190px;
-  font-family: 'Titillium Web', sans-serif;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  visibility: hidden; /* Initially hide nav-text */
-  opacity: 0;
-  z-index: 0; /* Initially behind other elements */
-}
-
-/* Initially disable interaction for menu items */
-.main-menu li > a {
-  pointer-events: none; /* Disable pointer events until the menu is fully expanded */
-}
-
-/* When the menu is expanded, show the nav-text and allow interactions */
-.main-menu.expanded .nav-text {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  z-index: 9999; /* Bring nav-text to the front when expanded */
-}
-
-.main-menu.expanded li > a {
-  pointer-events: auto; /* Re-enable pointer events when the menu is expanded */
-}
-
-/* Apply the left-to-right hover effect for nav-text */
-.main-menu li:hover .nav-text,
-.main-menu li:hover > a {
-  color: #fff; /* Change text color to white */
-  background-color: #444 !important; /* Ensure a single background color */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Hover effect for the button */
-.main-menu .toggle-btn:hover,
-.main-menu .logout-btn:hover {
-  background-color: #444 !important; /* Same background color on hover */
-  color: #fff; /* Change text color to white on hover */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* When the menu is expanded, enable hover effect */
-.main-menu.expanded li > a {
-  pointer-events: auto; /* Re-enable pointer events when the menu is expanded */
-}
-
-/* Add animation for buttons */
-.main-menu .nav-text, .main-menu li > a {
-  transition: transform 0.5s ease;
-}
-
-/* Hover effect expand */
-.main-menu li:hover .nav-text {
-  background-color: #444; /* Apply the background color on hover */
-  transform: scaleX(1);
-  transition: transform 0.5s ease, background-color 0.5s ease;
-}
-
-/* Default Logo Size */
-.main-menu .logo img {
-  transition: 0.5s;
-  width: 60px;
-  height: auto;
-}
-
-/* Enlarge logo when hovering over the entire main menu */
-.main-menu:hover .logo img {
-  transition: 0.5s;
-  width: 250px;
-  height: auto;
-  margin-top: 0;
-}
-
-/* Adjust the logo container */
-.main-menu .logo {
-  text-align: center;
-  padding: 15px 0;
-}
-
 /* Scrollable Elements */
 .no-touch .scrollable.hover {
   overflow-y: hidden;
@@ -180,6 +32,108 @@
   overflow-y: auto;
   overflow: visible;
 }
+
+
+#selectedModelsList {
+  min-height: 80px;
+  padding: 10px 0;
+}
+
+/* Container for buttons inside client entry */
+.client-entry button {
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 8px;
+  color: white;
+  min-width: 80px;
+}
+
+* {
+  border: none;
+  margin: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+canvas {
+  background: radial-gradient(#FFF, #DDD); /* Light background for light mode */
+  transform-origin: 0 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.top-spacer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px; /* keep your existing height */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px) brightness(1.15) contrast(1.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 1000; /* high enough to be on top */
+}
+
+
+.top-spacer + *,
+.client-manager-section,
+.login-container,
+.client-list-card,
+.client-create-card {
+  margin-top: 30px !important; /* reduced from 70px */
+  position: relative;
+  z-index: 1;
+}
+
+
+.ui {
+  display: none; /* Turn to 'block' if you want UI visible */
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  padding: 10px;
+  background: rgba(255,255,255,0.7);
+}
+
+.ui p {
+  font-size: 11px;
+  font-weight: 700;
+}
+.ui p.zoom span {
+  margin-right: 5px;
+  border: solid 1px #777;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.ui p.zoom span.zoomin {
+  padding: 2px 5px;
+}
+.ui p.zoom span.zoomout {
+  padding: 2px 8px;
+}
+.ui p.zoom span:hover {
+  background: black;
+  color: white;
+}
+
 
 /* Links */
 a:hover, a:focus {
@@ -202,7 +156,6 @@ nav ul, nav li {
 }
 
 /* Button Hover Effect (No Changes to Buttons) */
-.main-menu li:hover > a, nav.main-menu li.active > a,
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,
 .dropdown-menu > .active > a, 
 .dropdown-menu > .active > a:hover,
@@ -215,7 +168,7 @@ nav ul, nav li {
 /* Page Background Area */
 .area {
   float: left;
-  background: #e2e2e2;
+  background: #181c1f;
   width: 100%;
   height: 100%;
 }
@@ -231,40 +184,43 @@ nav ul, nav li {
 /* Body Styling */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #121212;
+  color: #e0e0e0;
   margin: 0;
   padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body::-webkit-scrollbar {
+/* 🎨 Modern Custom Scrollbar */
+::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #3498db;
+::-webkit-scrollbar-thumb {
+  background-color: #00e6ff;
   border-radius: 6px;
-  border: 3px solid #fff;
+  border: 3px solid #1e1e1e;
+  transition: background-color 0.3s ease;
 }
 
-body::-webkit-scrollbar-thumb:hover {
-  background-color: #2980b9;
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00d9ffad;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+::-webkit-scrollbar-track {
+  background-color: #2c2c2c;
   border-radius: 6px;
 }
 
-body::-webkit-scrollbar-track:hover {
-  background-color: #ddd;
+::-webkit-scrollbar-track:hover {
+  background-color: #2c2c2c;
 }
 
-/* Apply scroll to Search and Add Models container */
+
+/* Apply scroll to Search and Add Models */
 #searchResultsExport {
-  max-height: 300px; /* Set a max height for the container */
+  max-height: 300px; /* Set a max height for the */
   overflow-y: auto;  /* Enable vertical scrolling */
   padding: 10px;
   border: 1px solid #ddd; /* Optional: Add a border for better visibility */
@@ -285,38 +241,10 @@ body::-webkit-scrollbar-track:hover {
 }
 
 
-/* Container */
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-/* Page Title */
-h1.page-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* Section Titles */
-h1, h2, h3, h4 {
-  font-family: 'Montserrat', sans-serif;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
-
+.section-title,
+h1, h2, h3, h4,
 h2.section-title, h3.section-title {
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  color: #00e6ff;
 }
 
 h3.search-model {
@@ -324,46 +252,60 @@ h3.search-model {
   margin-bottom: 10px;
 }
 
-/* Button Styling */
-button {
-  padding: 12px 24px;
+button,
+button.submit-btn,
+.export-button {
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 20px;
   font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background: #3498db;
-  border: none;
+  font-weight: 500;
+  color: #000;
+  background: #00e6ff;
+  border: solid #000 1px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 10px;
-}
-
-button:hover {
-  background: #2980b9;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
-}
-
-/* Submit and Export Button Styling */
-button.submit-btn, .export-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
+  margin: 10px 0 10px 0;
   text-decoration: none;
-  background: #3498db;
-  border: 2px solid #3498db;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border: 1px solid #00e6ff;
+  box-shadow: inset 0 4px 12px rgba(0, 247, 255, 0.3);
 }
-button.submit-btn:hover, .export-button:hover {
-  color: #3498db;
+
+button:hover,
+button.submit-btn:hover,
+.export-button:hover,
+.restore-button:hover {
+  color: #00e6ff;
   background: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+} 
+
+.actions-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
+.export-button {
+  height: 35px !important;
+  line-height: 35px !important;
+  padding: 0 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  margin: 0; /* remove vertical margin if present */
+}
+
+.restore-button {
+  height: 35px !important;
+  line-height: 35px !important;
+  padding: 0 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  margin: 0; /* remove vertical margin if present */
+}
+
 
 
 /* General Button Styling */
@@ -381,147 +323,217 @@ button.submit-btn:hover, .export-button:hover {
   border: none; /* Remove border */
 }
 
-/* Styling for Delete Buttons (Red) */
-.actions .delete-model,
-.actions .delete-company { /* Target both model and company delete buttons */
-  background-color: #e74c3c; /* Red background */
-  color: white; /* White text */
+.main-content {
+  margin-top: 70px; /* equal to .top-spacer height */
+  /* keep other styles */
+  margin-left: 78px;
+  max-width: calc(100vw - 78px);
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 70px);
+  transition: margin-left 0.4s ease, max-width 0.4s ease;
 }
 
-.actions .delete-model:hover,
-.actions .delete-company:hover { /* Hover effect for both buttons */
-  background-color: #c0392b; /* Darker red on hover */
-  transform: translateY(-2px); /* Button lift effect */
-  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3); /* Box shadow on hover */
+body.sidebar-open .main-conten {
+  margin-left: 250px;
+  max-width: calc(100vw - 250px);
+  transition: margin-left 0.4s ease, max-width 0.4s ease;
 }
 
-/* Styling for Edit Buttons (Blue) */
-.actions .edit-model {
-  background-color: #3498db; /* Blue background */
-  color: white; /* White text */
-}
-.actions .edit-model:hover {
-  background-color: #2980b9; /* Darker blue on hover */
-  transform: translateY(-2px); /* Button lift effect */
-  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3); /* Box shadow on hover */
+/* ======= Client Manager Layout ======= */
+.client-manager-section {
+  max-width: 960px;
+  margin: 0px auto;
+  padding: 0 20px;
 }
 
-/* Data Table Styling */
-
-table {
-  width: 100%;
-  table-layout: fixed; /* Ensures columns are evenly distributed */
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  overflow: hidden; /* Prevents overflowing content */
-  text-overflow: ellipsis; /* Adds ellipsis for long content */
-}
-
-th.table-header {
-  background-color: #3498db;
-  color: #fff;
+.client-manager-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 32px;
   font-weight: bold;
+  color: #00e6ff;
+  margin-bottom: 40px;
+}
+/* ======= Card Base ======= */
+.client-create-card,
+.client-list-card,
+.export-history-card {
+  background: rgba(255, 255, 255, 0.02); /* slightly higher opacity for smoothness */
+  backdrop-filter: blur(4px) brightness(1.05) contrast(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 230, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
 }
 
-th.table-header, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th.table-header {
-  background-color: #3498db;
-  color: #fff;
+.client-card-title {
   font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  color: #00e6ff;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-td {
-  color: #333;
+/* Stack inputs vertically for login form */
+.client-form-wrapper-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Scrollable Table Styles */
-.table-container {
-  max-height: 400px; /* Adjust this value based on your design */
-  overflow-y: auto;  /* Enable vertical scrolling */
+/* ======= Add Client Form ======= */
+.client-form-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Table Styles for Fixed Layout */
-.table-container {
-  overflow-x: auto;  /* Allows horizontal scrolling for large tables */
-  margin-top: 20px;
-}
-
-/* Optional: Add a border for better visibility */
-.table-container table {
+.client-input {
+  background: rgba(255, 255, 255, 0.05); /* slightly higher opacity for smoothness */
+  backdrop-filter: blur(2px) brightness(1.05) contrast(1.05);
+  color: #e0e0e0;
+  border: 1px solid #555;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-radius: 6px;
   width: 100%;
-  border-collapse: collapse;
 }
 
-/* Adjust the width of the ID column */
-.table-container th:first-child,
-.table-container td:first-child {
-  width: 80px; /* Adjust this value to control the space taken by the ID column */
-  padding: 10px; /* Updated padding for consistency */
-  text-align: left;
+
+/* ======= Client List ======= */
+.client-list-container {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 16px 12px;
+  margin-bottom: 24px;
+  min-height: 60px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.client-list-container .client-entry {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05); /* slightly higher opacity for smoothness */
+  backdrop-filter: blur(2px) brightness(1.05) contrast(1.05);
+  gap: 0;
+}
+.client-list-container .client-entry:hover {
+  background: rgba(44, 49, 54, 0.55);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* Add vertical line between columns */
-.table-container th,
-.table-container td {
-  border-right: 1px solid #ddd; /* Vertical line between columns */
-  margin: 0; /* Reset any margin if applied */
+
+.client-entry .client-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  margin-right: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 28px;
 }
 
-/* Remove the right border for the last column */
-.table-container th:last-child,
-.table-container td:last-child {
-  border-right: none;
+/* Grouped client-entry button styling */
+.client-entry .client-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  height: 100%;
+}
+.client-entry .client-actions button {
+  min-width: 100px;
+  height: 28px;
+  padding: 0 0;
+  font-size: 14px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border: none;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+  margin: 0;
 }
 
-/* General Table Styles */
-.table-container th,
-.table-container td {
-  padding: 0 10px 0 10px; /* Adjusted padding: 0 top, 10px left/right, 0 bottom */
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+/* Specific button colors */
+.client-entry .client-actions .view-btn {
+  background-color: #00e6ff;
+  color: #000;
+  min-width: 140px; /* Make only the view-btn wider */
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid #00e6ff;
+  box-shadow: inset 0 4px 12px rgba(0, 247, 255, 0.3);
+  transition: all 0.3s ease;
+}
+.client-entry .client-actions .edit-client-btn {
+  background-color: #00e6ff;
+  color: #000;
+}
+.client-entry .client-actions .delete-client-btn {
+  background-color: #00e6ff;
+  color: #000;
 }
 
-/* Move Action buttons slightly down */
-.table-container .actions button {
-  margin-top: 10px; /* Moves the buttons down slightly */
-  padding-top: 5px; /* Adjusts button padding if needed */
+.client-entry .client-actions .view-btn:hover,
+.client-entry .client-actions .edit-client-btn:hover,
+.client-entry .client-actions .delete-client-btn:hover {
+  filter: brightness(0.85);
+  color: #fff;
 }
 
-/* Adjust width of "How Many Models" in the Companies Table */
-.table-container #companiesTable th:nth-child(3),
-.table-container #companiesTable td:nth-child(3) {
-  width: 120px; /* Adjust width of the "How Many Models" column */
-  padding: 8px; /* Reduce padding for a smaller size */
+.client-entry .client-actions .view-btn:hover {
+  background-color: transparent;
+  color: #00e6ff;
+  border: 1px solid #00e6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 230, 255, 0.3);
 }
-
-/* Adjust width of "Price (DH)" and "Discount (%)" in the Models Table */
-.table-container #modelsTable th:nth-child(3),
-.table-container #modelsTable td:nth-child(3),
-.table-container #modelsTable th:nth-child(4),
-.table-container #modelsTable td:nth-child(4) {
-  width: 100px; /* Adjust width of Price and Discount columns */
-  padding: 8px; /* Reduce padding for a smaller size */
+.client-entry .client-actions .edit-client-btn:hover {
+  background: transparent;
+  color: #e78f3c;
+  border: 1px solid #e78f3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 115, 0, 0.3);
 }
-
+.client-entry .client-actions .delete-client-btn:hover {
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+}
 
 /* Input and Form Styling */
 input, select, .search-input {
   padding: 12px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid #555;
   border-radius: 8px;
-  background: #f9f9f9;
-  color: #333;
+  background: rgba(255, 255, 255, 0.05); /* slightly higher opacity for smoothness */
+  backdrop-filter: blur(2px) brightness(1.05) contrast(1.05);
+  color: #e0e0e0;
   font-size: 16px;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -529,48 +541,18 @@ input, select, .search-input {
 }
 
 input:focus, select:focus, .search-input:focus {
-  border-color: #3498db;
-  background: #fff;
-  box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
-}
-
-
-
-
-input.login-input {
-  width: 100%;
-}
-
-input.login-input:focus {
-  border-color: #3498db;
+  border-color: #00e6ff;
+  background: #222;
+  box-shadow: 0 0 8px rgba(0, 230, 255, 0.3);
 }
 
 p.error-message {
   color: red;
 }
 
-/*Scroll Bar Styles*/
-/* Customize the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-  width: 12px; /* Set the width of the vertical scrollbar */
-  height: 12px; /* Set the height of the horizontal scrollbar */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #3498db; /* Blue color for the scrollbar thumb */
-  border-radius: 6px; /* Rounded corners for the thumb */
-  border: 3px solid #fff; /* White border around the thumb */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #2980b9; /* Darker blue when the thumb is hovered */
-}
-
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Light background color for the track */
-  border-radius: 6px; /* Rounded corners for the track */
-}
-
-::-webkit-scrollbar-track:hover {
-  background-color: #ddd; /* Slightly darker track on hover */
+.empty-message {
+  color: #888;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
 }

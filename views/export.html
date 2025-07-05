@@ -6,118 +6,163 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <title>Export to PDF</title>
+
   <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/sys.css">
+  <link rel="stylesheet" href="/css/notification.css">
+  <link rel="stylesheet" href="/css/responsivity.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/table-styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="area"></div>
-      <nav class="main-menu">
-          <ul>
-
-            <!-- Logo Section -->
-            <li class="logo">
-              <a href="#">
-                <img src="/img/AfakLogo.png" alt="AFAK Plastic Logo" id="afakLogo">
-              </a>
-            </li>
-            
-            <li>
-                <a href="/">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                      Home
-                    </span>
-                </a>
-            </li>
-
-            <li class="has-subnav">
-                <a href="/data">
-                    <i class="fa fa-tachometer-alt fa-2x"></i>
-                    <span class="nav-text">
-                      Dashboard
-                    </span>
-                </a>
-            </li>
-
-            <li class="has-subnav">
-                <a href="/export">
-                    <i class="fa fa-arrow-right fa-2x"></i>
-                    <span class="nav-text">
-                        Export
-                    </span>
-                </a>
-            </li>
-            <div class="bottom-buttons">
-              <li id="ToggleButton" class="toggle-btn">
-                <a href="#" id="toggleModeLink">
-                  <span class="nav-icon">
-                    <i class="fa fa-moon fa-2x" id="modeIcon"></i>
-                  </span>
-                  <span class="nav-text" id="modeText">Dark Mode</span>
-                </a>
-              </li>
-          
-              <li id="logoutButton" class="logout-btn">
-                <a href="#">
-                  <i class="fa fa-power-off fa-2x"></i>
-                  <span class="nav-text">Logout</span>
-                </a>
-              </li>
-            </div>
-        </ul>
-    </nav>
-  </header>
-
-  <!-- Main Container -->
-  <div class="container">
-    <h1 class="page-title">Export to PDF</h1>
-
-    <div>
-      <h3 class="section-title">Vendor Name</h3>
-      <input type="text" id="vendorName" class="vendor-input" placeholder="Enter Vendor Name" required />
+  
+  <div class="top-spacer">
+  <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <!-- Sidebar for navigation -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/img/AfakLogo.png" alt="AFak Logo" class="logo-icon" />
     </div>
 
-    <!-- Company Selector input below Vendor Name -->
-    <div>
-      <h3 class="section-title">Select Company</h3>
-      <select id="companySelector" class="select-input">
-        <option value="">Select Company</option>
-      </select>
-    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="/clients">
+          <i class='bx bx-user'></i>
+          <span class="links_name">Profiles</span>
+        </a>
+        <span class="tooltip">Profiles</span>
+      </li>
+      <li>
+        <a href="/data">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Data</span>
+      </li>
+      <li>
+        <a href="/export">
+          <i class='bx bx-folder'></i>
+          <span class="links_name">Export</span>
+        </a>
+        <span class="tooltip">Export</span>
+      </li>
 
-    <div class="search-model">
-      <h3 class="section-title">Search and Add Models</h3>
-      <input type="text" id="searchModelExport" class="search-input" placeholder="Search Model" autocomplete="off" />
-      <div id="searchResultsExport" class="search-results"></div>
+      <!-- Footer Profile Section -->
+      <li class="profile-footer">
+        <div class="about-me">
+          <div class="name">Hi, I’m EASY</div>
+          <div class="job">Creative Dev</div>
+        </div>
+        <div class="footer-controls">
+          <a href="#" id="log_out" class="logout-link">
+            <i class='bx bx-log-out'></i>
+            <span class="logout-text">Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-      <div id="modelDetails" class="model-details" style="display: none;">
-        <h3 class="section-title">Model Details</h3>
-        <input type="number" id="quantity" class="model-input" placeholder="Quantity" min="1" />
-        <input type="number" id="packages" class="model-input" placeholder="Packages" min="1" />
-        <input type="number" id="pairs" class="model-input" placeholder="Pairs" min="1" />
-        <input type="number" id="modelDiscountInput" class="model-input" placeholder="Discount (%)" min="0" max="100" />
-        <button id="addModelDetails" class="submit-btn">Add Model</button>
+  <div class="ui">
+    <p class="zoom">
+      <span class="zoom zoomin">+</span>
+      <span class="zoom zoomout">-</span>
+    </p>
+    <p class="zoomlevel">
+      <span class="percent">100</span> % - (<span class="width"></span>px)(<span class="height"></span>px)
+    </p>
+    <p>Dead: <span class="dead">0</span></p>
+    <p>Alive: <span class="alive">0</span></p>
+    <p>Drawn: <span class="drawn">0</span></p>
+    <p><span class="fps">0</span> FPS</p>
+    <a class="save" href="" download="capture.png">Save</a>
+  </div>
+
+  <div id="notification-container" class="notification-container"></div>
+  <div id="modal-container" class="modal-container"></div>
+
+  <div class="main-content">
+    <div class="client-manager-section">
+      <h1 class="client-manager-title">Export</h1>
+
+      <!-- 🔹 Client Name -->
+      <div class="client-create-card">
+        <h3 class="client-card-title">Client Name</h3>
+        <select id="clientSelector" class="model-input" required>
+          <option value="" disabled selected>Select Client</option>
+        </select>
+      </div>
+
+      <!-- 🔸 Select Company -->
+      <div class="client-create-card">
+        <h3 class="client-card-title">Select Company</h3>
+        <select id="companySelector" class="select-input">
+          <option value="">Select Company</option>
+        </select>
+      </div>
+
+      <!-- 🔹 Search and Add Models -->
+      <div class="client-list-card">
+        <h3 class="client-card-title">Search and Add Models</h3>
+        <input type="text" id="searchModelExport" class="search-input" placeholder="Search Model" autocomplete="off" />
+        <div id="searchResultsExport" class="search-results"></div>
+
+        <div id="modelDetails" class="model-details" style="display: none;">
+          <h3 class="section-title">Model Details</h3>
+          <input type="number" id="quantity" class="model-input" placeholder="Quantity" min="1" />
+          <input type="number" id="packages" class="model-input" placeholder="Packages" min="1" />
+          <input type="number" id="pairs" class="model-input" placeholder="Pairs" min="1" />
+          <input type="number" id="modelDiscountInput" class="model-input" placeholder="Discount (%)" min="0" max="100" />
+          <button id="addModelDetails" class="submit-btn">Add Model</button>
+        </div>
+      </div>
+
+      <!-- 🔸 Selected Models -->
+      <div class="client-list-card">
+        <h3 class="client-card-title">Selected Models</h3>
+        <div id="selectedModelsList" class="model-list"></div>
+      </div>
+
+      <!-- Action Bar INSIDE client-manager-section -->
+      <div class="client-list-card">
+        <div class="actions-left">
+          <form id="exportForm" style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <button type="submit" class="export-button">Export to PDF</button>
+            <button type="button" id="clearModels" class="export-button">Clear All</button>
+            <button type="button" id="restoreModels" class="restore-button">Restore Last Export</button>
+          </form>
+        </div>
+        <div class="action-glow"></div>
       </div>
     </div>
+  </div>
 
-    
 
-    <div class="selected-models">
-      <h3 class="section-title">Selected Models</h3>
-      <div id="selectedModelsList" class="model-list"></div>
+
+
+  <div id="globalLoadingSpinner" style="display: none; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
     </div>
-
-    <form id="exportForm">
-      <button type="submit" class="export-button">Export to PDF</button>
-    </form>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-  
-  <script src="/js/export.js"></script>
-  <script src="/js/dua.js"></script>
+
+  <script src="/js/spipa-background.js"></script>
+  <script src="/js/notification.js"></script>
+  <script src="/js/export-ui.js"></script>
+  <script src="/js/export-pdf.js"></script>
+  <script src="/js/ui-behavior.js"></script>
+
 </body>
 </html>

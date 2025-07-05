@@ -1,22 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Fetch companies to populate the company filter
+  const companyForm = document.getElementById("companyForm");
+  const modelForm = document.getElementById("modelForm");
+  const companySelector = document.getElementById("companySelector");
+  const modelFields = document.getElementById("modelFields");
+
   fetch("/api/companies")
     .then((response) => response.json())
     .then((companies) => {
-      const companySelector = document.getElementById("companySelector");
       companies.forEach((company) => {
         const option = document.createElement("option");
-        option.value = company.id;
-        option.textContent = company.name;
+        option.value = company.table;
+        option.textContent = company.table;
         companySelector.appendChild(option);
       });
+    })
+    .catch((error) => {
+      console.error("Error fetching companies:", error);
     });
 
-  // Handle company creation
-  const companyForm = document.getElementById("companyForm");
   companyForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const companyName = document.getElementById("companyName").value;
+    const companyNameInput = document.getElementById("companyName");
+    const companyName = companyNameInput.value;
 
     fetch("/api/companies", {
       method: "POST",
@@ -24,58 +29,95 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({ name: companyName }),
     })
       .then((response) => response.json())
-      .then((company) => {
-        alert(`Company "${company.name}" created successfully!`);
-        // Add the new company to the company selector dropdown
-        const companySelector = document.getElementById("companySelector");
+      .then((data) => {
+        showNotification(`Company "${companyName}" created!`, "success");
+
         const option = document.createElement("option");
-        option.value = company.id;
-        option.textContent = company.name;
+        option.value = data.table || companyName;
+        option.textContent = data.table || companyName;
         companySelector.appendChild(option);
-        // Reset the company form
+
         companyForm.reset();
       })
       .catch((error) => {
         console.error("Error creating company:", error);
-        alert("Failed to create company.");
+        showNotification("Failed to create company.", "error");
       });
   });
 
-  // Handle model creation
-  const modelForm = document.getElementById("modelForm");
-  const modelFields = document.getElementById("modelFields");
-
-  const companySelector = document.getElementById("companySelector");
-
-  // Show model fields only when a company is selected
   companySelector.addEventListener("change", (e) => {
-    if (e.target.value) {
-      modelFields.style.display = "block"; // Show fields
-    } else {
-      modelFields.style.display = "none"; // Hide fields if no company selected
-    }
+    modelFields.style.display = e.target.value ? "block" : "none";
   });
 
   modelForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const companyId = companySelector.value;
     const name = document.getElementById("modelName").value;
     const price = document.getElementById("modelPrice").value;
     const discount = document.getElementById("modelDiscount").value;
+    const quantity = document.getElementById("modelQuantity").value;
+    const packages = document.getElementById("modelPackages").value;
+    const table = companySelector.value;
+
+    if (!table) {
+      showNotification("Please select a company.", "warning");
+      return;
+    }
 
     fetch("/api/models", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, price, discount, company_id: companyId }),
+      body: JSON.stringify({ name, price, discount, quantity, packages, table }),
     })
+      .then((res) => res.json())
       .then(() => {
+        showNotification("Model added successfully!", "success");
         modelForm.reset();
-        modelFields.style.display = "none"; // Hide fields again
-        alert("Model added successfully!");
+        modelFields.style.display = "none";
       })
       .catch((error) => {
         console.error("Error adding model:", error);
-        alert("Failed to add model.");
+        showNotification("Failed to add model.", "error");
       });
   });
+
+  // Attach edit/delete handlers using event delegation
+  function attachCompanyActions() {
+    document.querySelectorAll(".edit-company").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const oldName = btn.dataset.name;
+        showPromptModal("Enter new company name:", oldName, (newName) => {
+          if (newName && newName !== oldName) {
+            fetch(`/api/companies/${oldName}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: newName }),
+            })
+              .then((res) => res.json())
+              .then(() => {
+                showNotification("Company renamed successfully.", "success");
+                location.reload();
+              })
+              .catch(() => showNotification("Failed to rename company", "error"));
+          } else {
+            showNotification("Edit cancelled or unchanged", "warning");
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll(".delete-company").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        showConfirmNotification(`Delete company '${name}'?`, () => {
+          fetch(`/api/companies/${name}`, { method: "DELETE" })
+            .then((res) => res.json())
+            .then(() => {
+              showNotification("Company deleted successfully.", "error");
+              location.reload();
+            })
+            .catch(() => showNotification("Failed to delete company", "error"));
+        });
+      });
+    });
+  }
 });

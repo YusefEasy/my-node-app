@@ -1,0 +1,511 @@
+/* ==================================
+   RESPONSIVE LAYOUT WITHOUT SIDEBAR
+   ================================== */
+
+/* Default mobile-first styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Global utility classes */
+.hide-on-mobile {
+  display: none !important;
+}
+.show-on-mobile {
+  display: block !important;
+}
+
+/* Specific breakpoint at ~1115px width for the gap you want */
+@media (min-width: 1100px) and (max-width: 1125px) {
+  .main-content {
+    margin-left: 78px;
+    max-width: calc(100vw - 78px - 60px);
+    transition: margin-left 0.4s ease, max-width 0.4s ease;
+  }
+  body.sidebar-open .main-content {
+    margin-left: 250px;
+    max-width: calc(100vw - 250px - 60px);
+    transition: margin-left 0.4s ease, max-width 0.4s ease;
+  }
+  
+  .client-manager-actions {
+    margin-left: 78px;
+    margin-right: 60px;
+  }
+
+  body.sidebar-open .client-manager-actions {
+    margin-left: 250px;
+    margin-right: 60px;
+  }
+}
+
+@media (max-width: 921px) {
+  .page-title,
+  .client-card-title,
+  h1,
+  h2 {
+    font-size: 1.7rem !important;
+    text-align: center !important;
+    padding: 8px 0 !important;
+    word-break: break-word !important;
+  }
+
+  table,
+  .models-table,
+  .client-list-container,
+  .client-list-container table {
+    font-size: 12px !important;
+    min-width: 700px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    border-spacing: 0 !important;
+  }
+
+  /* Make all table headers and cells a bit bigger */
+  th, td,
+  .models-table th, .models-table td,
+  .client-list-container th, .client-list-container td {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+    max-width: 90px !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    vertical-align: middle !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    hyphens: auto !important;
+    overflow-x: auto !important;
+  }
+
+  /* Make table header text bold and allow wrapping */
+  .models-table th,
+  .client-list-container th {
+    white-space: normal !important;
+    word-break: break-word !important;
+    hyphens: auto !important;
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+    max-width: 90px !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    vertical-align: middle !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .models-table td,
+  .client-list-container td {
+    white-space: nowrap !important; /* Keep cell content on one line */
+  }
+
+  .client-list-card {
+    width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+  }
+
+  .client-list-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    padding: 16px;
+  }
+
+  /* Make action buttons (edit, delete) a bit bigger */
+  .edit-model,
+  .delete-model,
+  .edit-company,
+  .delete-company {
+    font-size: 10px !important;
+    padding: 4px 8px !important;
+    min-width: 40px !important;
+    height: 25px !important;
+    border-radius: 5px !important;
+    margin: 2px 2px 0 0 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .client-button,
+  .submit,
+  .export-button,
+  .restore-button {
+    font-size: 10px !important;
+    padding: 6px 12px !important;
+    min-width: 60px !important;
+    height: 35px !important;
+    border-radius: 6px !important;
+    margin: 4px 2px 0 0 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .export-table {
+    font-size: 12px;
+    min-width: 500px;
+  }
+}
+
+
+/* Responsive adjustments for small devices */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .page-title,
+  h1,
+  h2 {
+    font-size: 1.4rem !important;
+    text-align: center !important;
+    padding: 6px 0 !important;
+    word-break: break-word !important;
+  }
+  .client-card-title {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+    padding: 6px 0 !important;
+    word-break: break-word !important;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .ui {
+    display: none;
+  }
+
+  .header, .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header .logo,
+  .navbar .nav-links {
+    width: 100%;
+    text-align: center;
+  }
+
+  .responsive-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+  }
+
+  .responsive-hidden {
+    display: none;
+  }
+
+  .responsive-visible {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Also add smooth transition to the toggle button */
+  #btn {
+    transition: all 0.5s ease;
+  }
+
+  .sidebar:not(.open) .links_name,
+  .sidebar:not(.open) #modeText,
+  .sidebar:not(.open) .about-me,
+  .sidebar:not(.open) .tooltip,
+  .sidebar:not(.open) #log_out {
+    display: none;
+  }
+
+  .sidebar .nav-list {
+    padding-bottom: 80px;
+    overflow-y: auto;
+  }
+
+  .sidebar li.profile {
+    width: 250px;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    max-width: 100vw !important;
+    padding: 12px;
+  }
+
+  .client-manager-actions {
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .client-manager-actions .actions-left {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .client-manager-actions .export-button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;   /* reduce font size for better fit */
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .client-entry {
+    flex-wrap: wrap;
+  }
+
+  .client-entry button {
+    flex: 1 1 100%;
+    margin: 6px 0 0 0;
+    min-width: auto;
+  }
+
+  /*////////////////////////////////////*/
+  /* Make all tables and their content small and scrollable */
+  table,
+  .models-table,
+  .client-list-container,
+  .client-list-container table {
+    padding: 4px !important;
+    scrollbar-width: thin;
+    scrollbar-color: #00eaff #222;
+    font-size: 10px !important;
+    min-width: 600px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    border-spacing: 0 !important;
+  }
+
+  /* Make all table headers and cells small */
+  th, td,
+  .models-table th, .models-table td,
+  .client-list-container th, .client-list-container td {
+    font-size: 10px !important;
+    padding: 2px 3px !important;
+    max-width: 60px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Make table header text bold and small */
+  .models-table th,
+  .client-list-container th {
+    white-space: normal !important; /* Allow header text to wrap */
+    font-size: 10px !important;
+    padding: 2px 3px !important;
+    max-width: 60px !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .models-table td,
+  .client-list-container td {
+    white-space: nowrap !important; /* Keep cell content on one line */
+  }
+
+  /* Make action buttons in tables small and stack vertically */
+  .client-actions,
+  .client-entry .client-actions {
+    flex-direction: row !important;
+    gap: 4px !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    display: flex !important;
+  }
+  .client-actions button,
+  .models-table .client-actions button,
+  .client-actions button,
+  .client-list-container .client-actions button,
+  .edit-client-btn,
+  .delete-client-btn {
+    width: auto !important;
+    min-width: 28px !important;
+    margin: 0 !important;
+    display: inline-block !important;
+  }
+  .client-list-container {
+    padding: 4px !important;
+    font-size: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .edit-company,
+  .delete-company,
+  .edit-model,
+  .delete-model {
+    font-size: 8px !important;
+    padding: 1px 0 !important;
+    min-width: 28px !important;
+    width: 100% !important;
+    height: 17px !important;
+    border-radius: 3px !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  #modelsTable td .created-time {
+    display: block !important;
+    font-size: 9px !important;
+  }
+
+  .client-button,
+  .submit,
+  .export-button,
+  .restore-button {
+    font-size: 10px !important;
+    padding: 6px 12px !important;
+    min-width: auto !important;
+    height: 35px !important;
+    border-radius: 6px !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    display: block !important;
+    transition: background 0.18s, transform 0.18s;
+  }
+
+  button:focus,
+  .client-button:focus,
+  .submit:focus,
+  .export-button:focus,
+  .restore-button:focus {
+    outline-offset: 2px;
+  }
+
+  /* Make export and other utility buttons small */
+  .utility-button,
+  .models-table .btn {
+    font-size: 10px !important;
+    padding: 4px 8px !important;
+    min-width: 50px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+    margin: 0 2px 0 0 !important;
+  }
+
+  /* Make select, input, and icon elements inside tables small */
+  .models-table select,
+  .models-table input,
+  .client-list-container select,
+  .client-list-container input {
+    font-size: 10px !important;
+    padding: 2px 4px !important;
+    height: 22px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Make icons and svg inside tables small */
+  .models-table svg,
+  .client-list-container svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .client-list-card,
+  .export-history-card,
+  .models-table,
+  .export-table {
+    transition: box-shadow 0.3s cubic-bezier(.6,.2,.4,1), transform 0.3s cubic-bezier(.6,.2,.4,1);
+    will-change: box-shadow, transform;
+  }
+
+  .client-list-card:active,
+  .export-history-card:active,
+  .models-table:active,
+  .export-table:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0,234,255,0.12);
+  }
+
+  .client-button:active,
+  .submit:active,
+  .export-button:active,
+  .restore-button:active {
+    transform: scale(0.96);
+    background: #00eaff;
+    color: #181c23;
+  }
+
+  .export-table {
+    font-size: 10px;
+    min-width: 400px;
+  }
+  .export-history-card {
+    padding-bottom: 6px;
+  }
+  .export-table th,
+  .export-table td {
+    padding: 4px 6px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+
+@media (min-width: 769px) {
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .hide-on-desktop {
+    display: none !important;
+  }
+
+  .show-on-desktop {
+    display: block !important;
+  }
+
+  .responsive-toggle {
+    display: none;
+  }
+
+  .sidebar {
+    transform: translateX(0) !important;
+    top: 70px;
+    height: calc(100% - 70px);
+  }
+  #btn {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+  } 
+}
